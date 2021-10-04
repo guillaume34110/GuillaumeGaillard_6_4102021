@@ -5,20 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/settings.css">
+    <link rel="stylesheet" href="./css/commons.css">
+    <link rel="stylesheet" href="./css/main-page.css">
     <link rel="icon" href="./assets/LogoFisheye.png">
-   
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 
     <title>Fisheye</title>
 </head>
 
 <body>
     <header>
-        <div>Passez au contenu</div>
-        <div>
-            <img src="assets/LogoFisheye.png">
+        <div class = "return-top">Passez au contenu</div>
+        <div class = "header-menu">
+            <img class = 'logo' src="assets/logo.png">
             <ul class="tags"></ul>
-         <h1>Nos photographes</h1>
+         <h1 >Nos photographes</h1>
         </div>
     </header>
     <main>
@@ -26,4 +30,5 @@
     </main>
 </body>
 <script type="module" src="./javascript/main.js"></script>
+<script type="module" src="./javascript/tagSort.js"></script>
 </html>

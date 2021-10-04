@@ -1,0 +1,38 @@
+/*          */
+.tag {
+  display: flex;
+  align-self: center;
+
+  color: #901c1c;
+  border: 1px solid #c4c4c4;
+  border-radius: 11px;
+  box-sizing: border-box;
+  padding: 2px 7px;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0em;
+  text-align: center;
+  margin: 1.6px 1.6px;
+  cursor: pointer;
+}
+.tag:hover,
+.tag:focus,
+.tag-selected {
+  background: #911c1c;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 11px;
+  color: #ffffff;
+}
+/*           */
+.logo {
+    width: 200px;
+    height: 50px;
+  }
+/*              */
+.img-profile-big {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 50%;
+}

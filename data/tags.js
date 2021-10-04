@@ -1,1 +1,1 @@
-export  const tagsArray =['#Portrait','#Art','#Fashion','#Architecture','#Travel','#Spot','#Animals','#Events']
+export  const tagsArray =['portrait','art','fashion','architecture','travel','spot','animals','events']
