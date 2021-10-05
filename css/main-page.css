@@ -42,7 +42,7 @@ main {
   flex-wrap: wrap;
   justify-content: space-around;
 }
-.section {
+section {
   width: 25vw;
   min-width : 350px;
   height: 45vh;
@@ -53,9 +53,15 @@ main {
   justify-content: center;
   margin: 4vh 0;
 }
+section a{
+  cursor: pointer;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+ 
+}
 
-
-.section ul {
+section ul {
     margin : 2px 0 0 0;
 }
 /*tag style */

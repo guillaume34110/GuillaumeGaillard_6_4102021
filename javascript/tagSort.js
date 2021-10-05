@@ -1,4 +1,4 @@
-import { mapMainPage } from "./main.js"
+import { mapMainPage } from "./mainPage.js"
 export let sortingArray = []
 
 export const eventSettings = () => {

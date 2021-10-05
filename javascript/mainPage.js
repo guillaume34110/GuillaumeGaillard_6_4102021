@@ -1,22 +1,12 @@
 import { tagsArray } from '../data/tags.js'
 import { getJsonData } from './getJsonData.js'
+import { Photograph } from './Objects.js'
 import { eventSettings, sortingArray } from './tagSort.js'
 
 let newData
 export let photographArray = []
 
-function Photograph(name, id, city, country, tags, tagline, price, portrait) {
 
-  this.name = name
-  this.id = id;
-  this.city = city;
-  this.country = country;
-  this.tags = tags
-  this.tagline = tagline
-  this.price = price
-  this.portrait = portrait
-
-}
 
 const tagsDraw = async () => {
   tagsArray.forEach(e => {
@@ -35,14 +25,9 @@ const tagsDraw = async () => {
 document.body.onload = tagsDraw;
 
 
-
 const removeSections = () => {
-  const sections = document.querySelectorAll('.section')
-  sections.forEach(section =>{
-    section.remove();
-  })
   const main = document.querySelector('main')
- main.replaceChildren();
+  main.replaceChildren();
 }
 
 const dataSort = () => {
@@ -60,16 +45,14 @@ newData.photographData.forEach(e => {
 export const mapMainPage = async () => {
   removeSections()
   dataSort()
+  const main = document.querySelector('main');
   photographArray.forEach(e => {
-    const main = document.querySelector('main');
-    const newSection = document.createElement('div');
+    const newSection = document.createElement('section');
     newSection.classList.add(e.id)
-    newSection.classList.add('section')
-    const newName = e.name.replace(/ /g, "");
-    console.log(newName, 'new')
     const newHtml = `
-        <img class = "img-profile-big"src = './assets/SamplePhotos/Photographers/${newName}.jpg' alt='photo de profil de ${e.name}' />   
-        <h2>${e.name}</h2>
+    <a href= "../html/photograph.html?${e.id}">
+        <img class = "img-profile-big"src = './assets/SamplePhotos/Photographers/${e.newName}.jpg' alt='photo de profil de ${e.name}' />   
+        <h2>${e.name}</h2></a>
         <h3>${e.city},${e.country}</h3>
         <h4>${e.tagline}</h4>
         <p>${e.price}€/jour</p>
