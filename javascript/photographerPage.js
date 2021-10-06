@@ -2,6 +2,7 @@
 import { getJsonData } from './dependances/getJsonData.js'
 import { Galery, Photograph } from './dependances/Objects.js'
 import { sortingArray, tagsEventSettings } from './dependances/sorting/tagSort.js'
+import { lightBoxEventSettings } from './modals/lightbox.js'
 
 
 let fullData
@@ -75,6 +76,7 @@ export const sectionsDraw = () => {
         newSection.innerHTML = newHtml;
     })
     tagsEventSettings()
+    lightBoxEventSettings()
 }
 
 const ArticleDraw = async () => {
