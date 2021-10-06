@@ -61,4 +61,11 @@ body {
     padding: 0;
     color: #757575;
   }
-  
+  hr{
+      position: relative;
+      width: 90%;
+      height: 0px;
+      border: 0.5px solid white;
+     left: 0;
+     margin :0;
+  }

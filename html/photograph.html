@@ -15,7 +15,7 @@
     <link href="../fontawesome/css/all.css" rel="stylesheet">
     <title>Fisheye</title>
 </head>
-<body>
+<body class ='photograph-pages'>
 <header>
     <img class = 'logo' src="../assets/logo.png" alt = "fisheye Home page">
 </header>
@@ -24,12 +24,13 @@
 
 </article>
 <div class = "selection">
-<label for="sort">Trier par</label>
-<select  id = "sort" class = "btn custom-select" >
-    <option class="select-option" value = "popularity">Popularité</option>
-    <option class="select-option" value = "date">date</option>
-    <option  class="select-option" value = "titre">titre</option>
-    </select>
+    <p>TrierPar</p>
+<div class="dropdown-container">
+    <button aria-controls="export-dropdown" aria-expanded="false" class="dropdown btn" >
+      <span>Popularité </span>
+      <i class="fa fa-angle-down"></i>
+    </button>
+  </div>
 </div>
 <section>
 
@@ -37,4 +38,5 @@
 </main>
 </body>
 <script type="module" src="../javascript/photographerPage.js"></script>
+<script type="module" src="../javascript/dropDownMenu.js"></script>
 </html>

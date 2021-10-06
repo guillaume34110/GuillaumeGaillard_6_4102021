@@ -1,7 +1,7 @@
 header {
   display: flex;
   align-items: flex-start;
-  margin-bottom: 5vh;
+  margin-bottom: 3vh;
   height: 10vh;
   padding: 3vh 5vw 0 5vw;
 }
@@ -76,40 +76,47 @@ main {
   align-self: flex-start;
   margin: 2vh 0 0 5vw;
 }
-.selection label {
-  font-weight: bold;
-  font-size: 18px;
-  line-height: 23px;
-  margin-right: 20px;
+.selection p{
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 23px;
+    height: 68px;
+    margin-right:  10px  ;
 }
-#sort{
-    display :block ;
-    line-height: 50px;
-}
-#sort option{
-    display:block;
-    height: 50px !important;
-    min-height: 50px!important;
-    line-height: 50px;
-}
- 
- .select-option{
-    padding: 50px !important;
-    line-height: 50px;
+
+
+/*section */
+section{
+    margin-top:2vh;
 }
  .img-galery{
-    width: 200px;
-  height: 200px;
+    width: 350px;
+  height: 300px;
+  border-radius: 5px;
   object-fit: cover;
   align-self: center;
   justify-self: center;
+  transition: 0.3s;
  }
+ 
  section{
      display: flex;
      flex-wrap: wrap;
      align-items: center;
-     justify-content: space-between;
+     justify-content: space-around;
+     
  }
+ figure{
+     cursor: pointer;
+     
+ }
+ figure:hover > .img-galery , figure:hover > .video{
+     transform: scale(1.02);
+     filter: brightness(1.05);
+ }
+
  .galery-footer{
      display: flex;
      align-items: center;
@@ -118,6 +125,20 @@ main {
  .galery-like{
     display: flex;
  }
+ .galery-footer h3{
+        font-size: 24px;
+        line-height: 31px;
+        text-overflow: ellipsis;
+        max-width : 250px;
+        white-space: nowrap;
+        overflow: hidden;
+ }
+ .galery-like p{
+    font-size: 16px;
+line-height: 19px;
+margin-right: 8px;
+ }
+
 
 @media (max-width: 1300px) {
   .photograph-article h2 {

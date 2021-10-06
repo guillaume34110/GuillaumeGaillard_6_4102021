@@ -1,13 +1,13 @@
 import { tagsArray } from '../data/tags.js'
 import { getJsonData } from './getJsonData.js'
 import { Photograph } from './Objects.js'
-import { eventSettings, sortingArray } from './tagSort.js'
+import {  sortingArray, tagsEventSettings } from './tagSort.js'
 
 let newData
 export let photographArray = []
 
 
-
+//draw header tags 
 const tagsDraw = async () => {
   tagsArray.forEach(e => {
     const newButton = document.createElement('li');
@@ -22,17 +22,18 @@ const tagsDraw = async () => {
   newData = await getJsonData()
   await mapMainPage()
 }
-document.body.onload = tagsDraw;
+const body = document.querySelector('body') 
+if (body.classList.contains('main-page')) document.body.onload = tagsDraw;
 
 
-const removeSections = () => {
+ const removeSections = () => {
   const main = document.querySelector('main')
   main.replaceChildren();
 }
 
 const dataSort = () => {
   photographArray = []
-newData.photographData.forEach(e => {
+  newData.photographData.forEach(e => {
   let sortingToken = 0
   sortingArray.forEach(tag => {
     if (e.tags.includes(tag)) sortingToken ++
@@ -48,7 +49,7 @@ export const mapMainPage = async () => {
   const main = document.querySelector('main');
   photographArray.forEach(e => {
     const newSection = document.createElement('section');
-    newSection.classList.add(e.id)
+    newSection.classList.add(`${e.id}`)
     const newHtml = `
     <a href= "../html/photograph.html?${e.id}">
         <img class = "img-profile-big"src = './assets/SamplePhotos/Photographers/${e.newName}.jpg' alt='photo de profil de ${e.name}' />   
@@ -64,7 +65,7 @@ export const mapMainPage = async () => {
     main.appendChild(newSection);
     newSection.innerHTML = newHtml;
   })
-  eventSettings() //set event listener on new elements
+  tagsEventSettings() //set event listener on new elements
 }
 
 
