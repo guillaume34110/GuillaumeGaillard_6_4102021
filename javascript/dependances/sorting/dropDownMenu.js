@@ -1,5 +1,5 @@
 
-import {currentGalery} from './photographerPage.js'
+import {currentGalery} from '../../photographerPage.js'
 
 let sortedFullData = []
 

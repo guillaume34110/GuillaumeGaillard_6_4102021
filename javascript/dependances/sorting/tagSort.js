@@ -1,5 +1,5 @@
-import { mapMainPage } from "./mainPage.js"
-import { sectionsDraw } from "./photographerPage.js"
+import { mapMainPage } from "../../mainPage.js"
+import { sectionsDraw } from "../../photographerPage.js"
 
 export let sortingArray = []
 

@@ -1,7 +1,7 @@
 
-import { getJsonData } from './getJsonData.js'
-import { Galery, Photograph } from './Objects.js'
-import { sortingArray, tagsEventSettings } from './tagSort.js'
+import { getJsonData } from './dependances/getJsonData.js'
+import { Galery, Photograph } from './dependances/Objects.js'
+import { sortingArray, tagsEventSettings } from './dependances/sorting/tagSort.js'
 
 
 let fullData

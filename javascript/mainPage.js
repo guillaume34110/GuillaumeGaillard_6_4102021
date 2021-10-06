@@ -1,7 +1,7 @@
 import { tagsArray } from '../data/tags.js'
-import { getJsonData } from './getJsonData.js'
-import { Photograph } from './Objects.js'
-import {  sortingArray, tagsEventSettings } from './tagSort.js'
+import { getJsonData } from './dependances/getJsonData.js'
+import { Photograph } from './dependances/Objects.js'
+import {  sortingArray, tagsEventSettings } from './dependances/sorting/tagSort.js'
 
 let newData
 export let photographArray = []
