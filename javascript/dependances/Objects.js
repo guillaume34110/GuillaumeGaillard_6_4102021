@@ -11,6 +11,7 @@ export function Photograph(name, id, city, country, tags, tagline, price, portra
     this.newName= name.replace(/ /g, "");
     
   }
+
 export function Galery(id, photographerId, title, image,video, likes, date, price) {
   
     this.id = id;
@@ -21,6 +22,11 @@ export function Galery(id, photographerId, title, image,video, likes, date, pric
     this.likes = likes
     this.date = date
     this.price = price
-    
+    this.foundSrc  = (pathName) =>  {
+      let media
+      if (image)media =image
+      else media = video
+      this.src=`../assets/SamplePhotos/${pathName}/${media}`
+    }
   }
  

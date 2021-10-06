@@ -17,19 +17,28 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    position: relative;
     width : 90%;
 }
-.light-box img{
+.light-box img ,.video-light-box{
+    position: relative;
     height : 90vh;
     width: 80vw;
+    top:2vh;
 }
 .light-box i{
-    font-size :30px;
+    font-size :48px;
     cursor: pointer;
 }
-.fa-times{
+.light-box h3{
+    
+    align-self:flex-start;
+    margin:  4vh 0 0 10vw;
+}
+.light-box .fa-times {
     font-size:42px;
     position : absolute;
+    z-index: 20;
     top:4%;
     left :93%;
     cursor: pointer;

@@ -2,12 +2,13 @@
 import { getJsonData } from './dependances/getJsonData.js'
 import { Galery, Photograph } from './dependances/Objects.js'
 import { sortingArray, tagsEventSettings } from './dependances/sorting/tagSort.js'
-import { lightBoxEventSettings } from './modals/lightbox.js'
+import { lightBoxEventSettings } from './dependances/modals/lightbox.js'
+import { heartEventListener, likesDrawWidget } from './dependances/likes.js'
 
 
 let fullData
 let photographerId
-let currentPhotographer
+export let currentPhotographer
 export let currentGalery
 
 const getId = () => {
@@ -49,25 +50,25 @@ export const sectionsDraw = () => {
         let newHtml
         if (e.image) newHtml = `
         
-        <img class = "img-galery" src = '../assets/SamplePhotos/${pathName}/${e.image}' alt='photo de profil de ${e.name}' />   
+        <img id = "${e.id}"class = "img-galery" src = '../assets/SamplePhotos/${pathName}/${e.image}' alt='photo de profil de ${e.name}' />   
             <div class = "galery-footer">
             <div><h3>${e.title}</h3></div>
             <div class = "galery-like">
-            <p>${e.likes}</p>
-            <i class ="fas fa-heart"></i>
+            <p  id="p${e.id}">${e.likes}</p>
+            <i id="i${e.id}" class ="fas fa-heart"></i>
         </div>
             `
         if (e.video) newHtml = `
             
-            <video class ="video" width="350" height="300" controls ="">
+            <video id = "${e.id}" class ="video" width="350" height="300" controls ="">
             <source src="../assets/SamplePhotos/${pathName}/${e.video}" type="video/mp4">
             Your browser does not support the video tag.
             </video>
              <div  class = "galery-footer">  
                 <h3>${e.title}</h3>
                 <div class ="galery-like">
-                <p>${e.likes}</p>
-                <i class ="fas fa-heart"></i>
+                <p id="p${e.id}">${e.likes}</p>
+                <i id="i${e.id}" class ="fas fa-heart"></i>
                 </div>
             </div>
                 `
@@ -75,8 +76,10 @@ export const sectionsDraw = () => {
         section.appendChild(newSection);
         newSection.innerHTML = newHtml;
     })
+    likesDrawWidget()
     tagsEventSettings()
     lightBoxEventSettings()
+    heartEventListener()
 }
 
 const ArticleDraw = async () => {
