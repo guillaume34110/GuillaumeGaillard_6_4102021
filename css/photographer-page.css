@@ -104,6 +104,7 @@ section {
   justify-self: center;
   transition: 0.3s;
   cursor: pointer;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 figure{
@@ -114,6 +115,7 @@ figure:hover > .img-galery,
 figure:hover > .video {
   transform: scale(1.02);
   filter: brightness(1.05);
+  box-shadow: rgba(149, 157, 165, 0.6) 0px 10px 26px;
 }
 
 .galery-footer {

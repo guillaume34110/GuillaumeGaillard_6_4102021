@@ -12,6 +12,7 @@
     justify-content: center;
     align-items: center;
     cursor: default;
+    margin: 0;
 }
 .light-box div{
     display: flex;
@@ -25,6 +26,7 @@
     height : 90vh;
     width: 80vw;
     top:2vh;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .light-box i{
     font-size :48px;

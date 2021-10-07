@@ -1,9 +1,12 @@
 
-import { getJsonData } from './dependances/getJsonData.js'
-import { Galery, Photograph } from './dependances/Objects.js'
-import { sortingArray, tagsEventSettings } from './dependances/sorting/tagSort.js'
-import { lightBoxEventSettings } from './dependances/modals/lightbox.js'
-import { heartEventListener, likesDrawWidget } from './dependances/likes.js'
+import { getJsonData } from "./dependances/getJsonData.js"
+import { Galery, Photograph } from "./dependances/Objects.js"
+import { sortingArray, tagsEventSettings } from "./dependances/sorting/tagSort.js"
+import { lightBoxEventSettings } from "./dependances/modals/lightbox.js"
+import { heartEventListener, likesDrawWidget } from "./dependances/likes.js"
+import { formEventListener } from "./dependances/modals/contactForm.js"
+import { sortValue } from "./dependances/sorting/dropDownMenu.js"
+
 
 
 let fullData
@@ -12,7 +15,7 @@ export let currentPhotographer
 export let currentGalery
 
 const getId = () => {
-    return window.location.href.split('?').pop()
+    return window.location.href.split("?").pop()
 }
 const createPhotograph = () => {
     fullData.photographData.forEach(e => {
@@ -21,7 +24,7 @@ const createPhotograph = () => {
     })
 }
 const removeFigures = () => {
-    const section = document.querySelector('section')
+    const section = document.querySelector("section")
     section.replaceChildren();
   }
 const createGalery = () => {
@@ -39,24 +42,22 @@ const createGalery = () => {
         }
     })
 }
-export const sectionsDraw = () => {
+
+ export const sectionsDraw = (e) => {
     removeFigures()
     createGalery()
-    const section = document.querySelector('section')
+    sortValue(e)
+    const section = document.querySelector("section")
     currentGalery.forEach(e => {
-        const newSection = document.createElement('figure');
+        const newSection = document.createElement("figure");
         newSection.classList.add(`${e.id}`)
-        const pathName = currentPhotographer.name.split(' ')[0];
+        
+        const pathName = currentPhotographer.name.split(" ")[0];
         let newHtml
         if (e.image) newHtml = `
         
-        <img id = "${e.id}"class = "img-galery" src = '../assets/SamplePhotos/${pathName}/${e.image}' alt='photo de profil de ${e.name}' />   
-            <div class = "galery-footer">
-            <div><h3>${e.title}</h3></div>
-            <div class = "galery-like">
-            <p  id="p${e.id}">${e.likes}</p>
-            <i id="i${e.id}" class ="fas fa-heart"></i>
-        </div>
+        <img tabindex = "0" id = "${e.id}"class = "img-galery" src = '../assets/SamplePhotos/${pathName}/${e.image}' alt='photo de profil de ${e.name}' />   
+           
             `
         if (e.video) newHtml = `
             
@@ -64,15 +65,16 @@ export const sectionsDraw = () => {
             <source src="../assets/SamplePhotos/${pathName}/${e.video}" type="video/mp4">
             Your browser does not support the video tag.
             </video>
-             <div  class = "galery-footer">  
-                <h3>${e.title}</h3>
-                <div class ="galery-like">
-                <p id="p${e.id}">${e.likes}</p>
-                <i id="i${e.id}" class ="fas fa-heart"></i>
-                </div>
-            </div>
+          
                 `
-
+        newHtml =  newHtml +`    
+        <div  class = "galery-footer">  
+            <h3>${e.title}</h3>
+            <div class ="galery-like">
+            <p id="p${e.id}">${e.likes}</p>
+            <i tabindex = "0" aria-label="Like icon clickable" id="i${e.id}" class ="fas fa-heart"></i>
+            </div>
+        </div>`
         section.appendChild(newSection);
         newSection.innerHTML = newHtml;
     })
@@ -80,14 +82,15 @@ export const sectionsDraw = () => {
     tagsEventSettings()
     lightBoxEventSettings()
     heartEventListener()
+    formEventListener()
 }
 
-const ArticleDraw = async () => {
-    fullData = await getJsonData()
+export const ArticleDraw = () => {
+    
     photographerId = getId()
     createPhotograph()
     const cP = currentPhotographer
-    const article = document.querySelector('article')
+    const article = document.querySelector("article")
     const newHtml = `
         <img class = "img-profile-big"src = '../assets/SamplePhotos/Photographers/${cP.newName}.jpg' alt='photo de profil de ${cP.name}' />  
         <div class = 'article-left-container'>
@@ -96,15 +99,20 @@ const ArticleDraw = async () => {
         <h3>${cP.city},${cP.country}</h3>
         <h4>${cP.tagline}</h4>
         <ul>${cP.tags.map(e => {
-        return `<li class = "tag ${e}" title="${e}">#${e}</li>`
+        return `<li class = "tag ${e}" title="${e}" tabindex ="0">#${e}</li>`
     }).join("")}
       </ul>
       </div>
-      <button class ="btn btn-article">contactez-moi</button> 
+      <button class ="btn btn-article btn-contact">Contactez-moi</button> 
       </div>`
 
     article.innerHTML = newHtml;
     sectionsDraw()
 }
-const body = document.querySelector('body') 
-if (body.classList.contains('photograph-pages'))document.body.onload = ArticleDraw;
+const startDrawPhotographPage = async() => {
+    fullData = await getJsonData()
+    ArticleDraw()
+}
+
+const body = document.querySelector("body") 
+if (body.classList.contains("photograph-pages"))document.body.onload =  startDrawPhotographPage ;

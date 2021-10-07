@@ -1,25 +1,34 @@
 import { currentGalery, currentPhotographer } from "../../photographerPage.js"
+import { timeout } from "../sorting/tagSort.js"
 
 export const lightBoxEventSettings = () => {
-    const imgs = document.querySelectorAll('.img-galery')
+    const imgs = document.querySelectorAll(".img-galery")
     imgs.forEach(e => {
-        e.addEventListener("click", LightBoxDraw)
+        events(e)
     })
-    const videos = document.querySelectorAll('.video')
+    const videos = document.querySelectorAll(".video")
     videos.forEach(e => {
-        e.addEventListener("click", LightBoxDraw)
+        events(e)
     })
 }
-
+const events = (e) => {
+    e.addEventListener("click", LightBoxDraw)
+    e.addEventListener("keydown", async function (e) {
+        if (e.key === "Enter") {
+            LightBoxDraw(e)
+            await timeout(500)
+        }
+    })
+}
 const closeLightBox = () => {
-    console.log('close')
-    const lightBox = document.querySelector('.light-box')
+    console.log("close")
+    const lightBox = document.querySelector(".light-box")
     lightBox.remove()
 }
 
 const prevPicture = () => {
-    const pathName = currentPhotographer.name.split(' ')[0];
-    const currentMedia = document.querySelector('.light-box')
+    const pathName = currentPhotographer.name.split(" ")[0];
+    const currentMedia = document.querySelector(".light-box")
     for (let i = 0; i < currentGalery.length; i++) {
         if (currentMedia.id === currentGalery[i].id.toString()) {
             if (currentGalery[i - 1]) {
@@ -39,8 +48,8 @@ const prevPicture = () => {
     }
 }
 const nextPicture = () => {
-    const pathName = currentPhotographer.name.split(' ')[0];
-    const currentMedia = document.querySelector('.light-box')
+    const pathName = currentPhotographer.name.split(" ")[0];
+    const currentMedia = document.querySelector(".light-box")
     for (let i = 0; i < currentGalery.length; i++) {
         if (currentMedia.id === currentGalery[i].id.toString()) {
             if (currentGalery[i + 1]) {
@@ -61,46 +70,69 @@ const nextPicture = () => {
 }
 const videohtml = (e) => {
     return `
-<i class="fas fa-times"></i>
+<i  arial-label= "icone fermer cickable" title= "fermer"tabindex="2" class="fas fa-times"></i>
 <div>
-    <i class="fas fa-chevron-left"></i>
+    <i arial-label= "icone  précedent clickable" title = "précédent" tabindex="2" class="fas fa-chevron-left"></i>
     <video  class ="video video-light-box" width="350" height="300" controls ="">
     <source src="${e.src}" type="video/mp4">
     Your browser does not support the video tag.
     </video>
-    <i class="fas fa-chevron-right"></i>
+    <i  title= "suivant" arial-label= "icone  suivant clickable" tabindex="1" class="fas fa-chevron-right"></i>
 </div>
 <h3>${e.title}</h3>
         `
 }
 const imghtml = (e) => {
     return `
-    <i class="fas fa-times"></i>
+    <i  arial-label= "icone fermer cickable" title= "fermer"tabindex="2" class="fas fa-times"></i>
     <div>
-        <i class="fas fa-chevron-left"></i>
+        <i  arial-label= "icone précedent clickable" title = " précédent " tabindex="2" class="fas fa-chevron-left"></i>
         <img  class = "img-galery img-light-box" src = '${e.src}' />   
-        <i class="fas fa-chevron-right"></i>
+        <i title= "suivant" arial-label= "icone  suivant clickable" tabindex="1" class="fas fa-chevron-right"></i>
     </div>
     <h3>${e.title}</h3>
         `
 }
 const insideEventListeners = () => {
-    document.querySelector('.fa-times').addEventListener('click', closeLightBox)
-    document.querySelector('.fa-chevron-left').addEventListener('click', prevPicture)
-    document.querySelector('.fa-chevron-right').addEventListener('click', nextPicture)
+    const close = document.querySelector(".fa-times")
+    close.addEventListener("click", closeLightBox)
+    close.addEventListener("keydown", async function (e) {
+        if (e.key === "Enter") {
+            closeLightBox()
+            await timeout(500)
+        }
+    })
+
+    const arrowLeft = document.querySelector(".fa-chevron-left")
+    arrowLeft.addEventListener("click", prevPicture)
+    arrowLeft.addEventListener("keydown", async function (e) {
+        if (e.key === "Enter") {
+            prevPicture()
+            await timeout(500)
+        }
+    })
+    const arrowRight = document.querySelector(".fa-chevron-right")
+    arrowRight.addEventListener("click", nextPicture)
+    arrowRight.addEventListener("keydown", async function (e) {
+        if (e.key === "Enter") {
+            nextPicture()
+            await timeout(500)
+        }
+    })
+
 }
 const LightBoxDraw = (e) => {
     const element = e.target
     element.title = e.target.parentElement.childNodes[3].children[0].innerText
-    console.log(e,'e');
-    const main = document.querySelector('main')
-    const newLightBox = document.createElement('figure');
-    newLightBox.classList.add('light-box')
+    const main = document.querySelector("main")
+    const newLightBox = document.createElement("figure");
+    newLightBox.classList.add("light-box")
     newLightBox.id = `${element.id}`
     let newHtml
-    if (e.target.classList[0] === 'img-galery') newHtml = imghtml(element)
-    if (e.target.classList[0] === 'video') newHtml = videohtml(element)
+    if (e.target.classList[0] === "img-galery") newHtml = imghtml(element)
+    if (e.target.classList[0] === "video") newHtml = videohtml(element)
     main.appendChild(newLightBox);
     newLightBox.innerHTML = newHtml;
+    document.querySelector(".fa-chevron-right").focus()
     insideEventListeners()
 }

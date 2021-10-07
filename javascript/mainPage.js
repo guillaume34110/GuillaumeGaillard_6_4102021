@@ -1,33 +1,39 @@
-import { tagsArray } from '../data/tags.js'
-import { getJsonData } from './dependances/getJsonData.js'
-import { Photograph } from './dependances/Objects.js'
-import {  sortingArray, tagsEventSettings } from './dependances/sorting/tagSort.js'
+import { tagsArray } from "../data/tags.js"
+import { getJsonData } from "./dependances/getJsonData.js"
+import { Photograph } from "./dependances/Objects.js"
+import {  sortingArray, tagsEventSettings } from "./dependances/sorting/tagSort.js"
 
 let newData
 export let photographArray = []
 
 
 //draw header tags 
-const tagsDraw = async () => {
+const tagsDraw = () => {
+  const currentDiv = document.querySelector(".tags")
+  currentDiv.replaceChildren()
   tagsArray.forEach(e => {
-    const newButton = document.createElement('li');
+    const newButton = document.createElement("li");
     const newContent = document.createTextNode(`#${e}`);
-    newButton.classList.add(`tag`)
+    newButton.classList.add("tag")
     newButton.classList.add(`${e}`)
+    newButton.setAttribute("tabindex","0")
     newButton.title = `${e}`
     newButton.appendChild(newContent);
-    const currentDiv = document.querySelector('.tags')
     currentDiv.appendChild(newButton);
   })
-  newData = await getJsonData()
-  await mapMainPage()
+ 
 }
-const body = document.querySelector('body') 
-if (body.classList.contains('main-page')) document.body.onload = tagsDraw;
+const startDrawMainPage = async() => {
+  newData = await getJsonData()
+   mapMainPage()
+}
+
+const body = document.querySelector("body") 
+if (body.classList.contains("main-page")) document.body.onload = startDrawMainPage;
 
 
  const removeSections = () => {
-  const main = document.querySelector('main')
+  const main = document.querySelector("main")
   main.replaceChildren();
 }
 
@@ -45,10 +51,11 @@ const dataSort = () => {
 
 export const mapMainPage = async () => {
   removeSections()
+  tagsDraw()
   dataSort()
-  const main = document.querySelector('main');
+  const main = document.querySelector("main");
   photographArray.forEach(e => {
-    const newSection = document.createElement('section');
+    const newSection = document.createElement("section");
     newSection.classList.add(`${e.id}`)
     const newHtml = `
     <a href= "../html/photograph.html?${e.id}">
@@ -58,7 +65,7 @@ export const mapMainPage = async () => {
         <h4>${e.tagline}</h4>
         <p>${e.price}€/jour</p>
         <ul>${e.tags.map(e => {
-      return `<li class = "tag ${e}" title="${e}">#${e}</li>`
+      return `<li class = "tag ${e}" title="${e}" tabindex="0">#${e}</li>`
     }).join("")}
       </ul>`
 
