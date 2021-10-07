@@ -65,3 +65,26 @@ section ul {
     margin : 2px 0 0 0;
 }
 /*tag style */
+
+@media screen and (max-width : 1000px){
+.header-menu{
+  position:relative;
+}
+.header-menu h1{
+font-size: 14px;
+line-height: 18px;
+text-align: end;
+}
+.header-menu ul{
+    position:absolute;
+    top:13vh;
+    justify-self: center;
+    left:10vw;
+    width :77vw;
+    max-width :80vw;
+  }
+  .logo{
+    width: 150px;
+    height: 38px;
+  }
+}
