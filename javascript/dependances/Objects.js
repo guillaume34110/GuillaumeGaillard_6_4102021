@@ -26,7 +26,7 @@ export function Galery(id, photographerId, title, image,video, likes, date, pric
       let media
       if (image)media =image
       else media = video
-      this.src=`../assets/SamplePhotos/${pathName}/${media}`
+      this.src=`./assets/SamplePhotos/${pathName}/${media}`
     }
   }
  
