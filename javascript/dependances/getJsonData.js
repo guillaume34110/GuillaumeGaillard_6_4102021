@@ -1,10 +1,7 @@
 
 export const getJsonData = async() => {
-      const url = "../data/API/data.json"
-      const jsonData = await fetch(url , {headersheaders:{
-        "Content-Type": "application/json",
-        "Accept": "application/json"
-      }})
+      const url = "../../data/API/data.json"
+      const jsonData = await fetch(url)
       const data = await jsonData.json()
      
       console.log(data);
