@@ -1,6 +1,6 @@
 
 export const getJsonData = async() => {
-      const url = "../../data/API/data.json"
+      const url = "../../data/data.json"
       const jsonData = await fetch(url)
       const data = await jsonData.json()
      
