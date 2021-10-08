@@ -56,16 +56,16 @@ const createGalery = () => {
         let newHtml
         if (e.image) newHtml = `
         
-        <img tabindex = "0" id = "${e.id}"class = "img-galery" src = './assets/SamplePhotos/${pathName}/${e.image}' alt='photo de profil de ${e.name}' />   
+        <img tabindex = "0" id = "${e.id}"class = "img-galery" src = './assets/SamplePhotos/${pathName}/${e.image}' alt='${e.title}' title ="${e.title}" />   
            
             `
         if (e.video) newHtml = `
             
-            <video id = "${e.id}" class ="video" width="350" height="300" controls ="">
+            <video id = "${e.id}" title ="${e.title}" class ="video" width="350" height="300"   >
             <source src="./assets/SamplePhotos/${pathName}/${e.video}" type="video/mp4">
             Your browser does not support the video tag.
             </video>
-          
+         
                 `
         newHtml =  newHtml +`    
         <div  class = "galery-footer">  

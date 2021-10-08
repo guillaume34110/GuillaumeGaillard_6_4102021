@@ -123,14 +123,19 @@ const insideEventListeners = () => {
 }
 const LightBoxDraw = (e) => {
     const element = e.target
-    element.title = e.target.parentElement.childNodes[3].children[0].innerText
+    console.log(e);
+    
+    console.log(element);
     const main = document.querySelector("main")
     const newLightBox = document.createElement("figure");
     newLightBox.classList.add("light-box")
     newLightBox.id = `${element.id}`
     let newHtml
     if (e.target.classList[0] === "img-galery") newHtml = imghtml(element)
-    if (e.target.classList[0] === "video") newHtml = videohtml(element)
+    if (e.target.classList[0] === "video") {
+        element.src = e.target.children[0].src
+        newHtml = videohtml(element)
+    }
     main.appendChild(newLightBox);
     newLightBox.innerHTML = newHtml;
     document.querySelector(".fa-chevron-right").focus()
