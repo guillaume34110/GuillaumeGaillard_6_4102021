@@ -58,7 +58,7 @@ export const mapMainPage = async () => {
     const newSection = document.createElement("section");
     newSection.classList.add(`${e.id}`)
     const newHtml = `
-    <a href= "../html/photograph.html?${e.id}">
+    <a href= "/photograph.html?${e.id}">
         <img class = "img-profile-big"src = './assets/SamplePhotos/Photographers/${e.newName}.jpg' alt='photo de profil de ${e.name}' />   
         <h2>${e.name}</h2></a>
         <h3>${e.city},${e.country}</h3>
