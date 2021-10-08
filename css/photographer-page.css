@@ -105,6 +105,7 @@ section {
   transition: 0.3s;
   cursor: pointer;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  background: #c4c4c4
 }
 
 figure{
@@ -177,5 +178,88 @@ figure:hover > .video {
 @media (max-width: 1300px) {
   .photograph-article h2 {
     white-space: normal;
+  }
+}
+@media screen and (max-width: 1000px) {
+  /*article */
+  .photograph-article {
+  position: relative;
+    height: fit-content;
+    padding: 2vh 2vw 4vh 2vw;
+    background: white;
+  }
+  .photograph-article img{
+    position: relative;
+    min-width: 100px;
+    min-height: 100px;
+    width: 100px;
+    height: 100px;
+    left : 0;
+  }
+
+  .article-left-container {
+    min-width: 0;
+  }
+  .photograph-article h2,
+.photograph-article h3,
+.photograph-article h4,
+.photograph-article p {
+  text-align: left;
+}
+.photograph-article h2 {
+  font-size: 36px;
+  line-height: 47px;
+  margin: 0 0 15px 0;
+  white-space: nowrap;
+}
+.photograph-article h3 {
+  font-size: 13px;
+  line-height: 17px;
+  margin-bottom: 10px;
+}
+.photograph-article h4 {
+  font-size: 13px;
+line-height: 17px;
+  margin-bottom: 00px;
+}
+.photograph-article ul {
+  position:absolute;
+  
+  
+}
+  .btn-article {
+   position: fixed;
+   z-index :15;
+   left: 50%;
+
+top: 92%;
+bottom: 3.69%;
+margin-left: -85px;
+  min-height:30px;
+  padding: 5px 18px;
+  }
+  .tag {
+    font-weight: 500;
+    font-size: 13px;
+line-height: 17px;
+border-radius: 11px;
+    padding: 0 8px;
+  }
+  /* galery*/
+  .img-galery {
+    width: 335px;
+    height: 190px;
+  }
+  .video{
+    width: 335px;
+    height: 190px;
+  }
+  /*dropdown          */
+  .selection{
+    display: none;
+  }
+  /*like widget*/
+  .likes-widget{
+    display: none;
   }
 }
