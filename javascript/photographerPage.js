@@ -56,13 +56,13 @@ const createGalery = () => {
         let newHtml
         if (e.image) newHtml = `
         
-        <img tabindex = "0" id = "${e.id}"class = "img-galery" src = '../assets/SamplePhotos/${pathName}/${e.image}' alt='photo de profil de ${e.name}' />   
+        <img tabindex = "0" id = "${e.id}"class = "img-galery" src = './assets/SamplePhotos/${pathName}/${e.image}' alt='photo de profil de ${e.name}' />   
            
             `
         if (e.video) newHtml = `
             
             <video id = "${e.id}" class ="video" width="350" height="300" controls ="">
-            <source src="../assets/SamplePhotos/${pathName}/${e.video}" type="video/mp4">
+            <source src="./assets/SamplePhotos/${pathName}/${e.video}" type="video/mp4">
             Your browser does not support the video tag.
             </video>
           
@@ -92,7 +92,7 @@ export const ArticleDraw = () => {
     const cP = currentPhotographer
     const article = document.querySelector("article")
     const newHtml = `
-        <img class = "img-profile-big"src = '../assets/SamplePhotos/Photographers/${cP.newName}.jpg' alt='photo de profil de ${cP.name}' />  
+        <img class = "img-profile-big"src = './assets/SamplePhotos/Photographers/${cP.newName}.jpg' alt='photo de profil de ${cP.name}' />  
         <div class = 'article-left-container'>
         <div>
         <h2>${cP.name}</h2>
