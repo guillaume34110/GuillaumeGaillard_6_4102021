@@ -1,11 +1,9 @@
 import { mapMainPage } from "../../mainPage.js"
 import { ArticleDraw } from "../../photographerPage.js"
+import { timeout } from "../timeoutFunction.js"
 
 export let sortingArray = []
 
-export function timeout(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
 
 export const tagsEventSettings = () => {
     const tags = document.querySelectorAll(".tag")

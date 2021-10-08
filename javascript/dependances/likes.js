@@ -1,5 +1,6 @@
 import { currentGalery, currentPhotographer } from "../photographerPage.js"
-import { timeout } from "./sorting/tagSort.js"
+import { timeout } from "./timeoutFunction.js"
+
 
 export const heartEventListener = () => {
    const heart = document.querySelectorAll(".fa-heart")

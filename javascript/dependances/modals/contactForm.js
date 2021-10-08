@@ -1,5 +1,6 @@
 import { currentPhotographer } from "../../photographerPage.js";
-import { timeout } from "../sorting/tagSort.js";
+import { timeout } from "../timeoutFunction.js";
+
 
 export const formEventListener = () => {
     document.querySelector(".btn-contact").addEventListener("click" , contactModalDraw)
