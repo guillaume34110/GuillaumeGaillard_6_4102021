@@ -1,5 +1,5 @@
 import { mapMainPage } from "../../mainPage.js"
-import { ArticleDraw } from "../../photographerPage.js"
+import { articleDraw } from "../../photographerPage.js"
 import { timeout } from "../timeoutFunction.js"
 
 export let sortingArray = []
@@ -25,7 +25,7 @@ const tagSort = (e) => {
     else sortingArray.push(newSortingValue)
     const body = document.querySelector("body") 
     if (body.classList.contains("main-page")) mapMainPage()
-    else if (body.classList.contains("photograph-pages"))  ArticleDraw ()
+    else if (body.classList.contains("photograph-pages"))  articleDraw ()
     //tag remove activity//
     const allTags = document.querySelectorAll(".tag")
     allTags.forEach(tag => {

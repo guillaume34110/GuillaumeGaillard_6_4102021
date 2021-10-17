@@ -103,6 +103,6 @@ const contactModalCheck = () => {
           
         })
         if (errorToken === false)textControl.forEach (e=> {console.log(e.id," = ",e.value);})
-
+        modalClose()
 
 }

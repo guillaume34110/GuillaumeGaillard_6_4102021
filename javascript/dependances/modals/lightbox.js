@@ -13,10 +13,10 @@ export const lightBoxEventSettings = () => {
     })
 }
 const events = (e) => {
-    e.addEventListener("click", LightBoxDraw)
+    e.addEventListener("click", lightBoxDraw)
     e.addEventListener("keydown", async function (e) {
         if (e.key === "Enter") {
-            LightBoxDraw(e)
+            lightBoxDraw(e)
             await timeout(500)
         }
     })
@@ -122,11 +122,8 @@ const insideEventListeners = () => {
     })
 
 }
-const LightBoxDraw = (e) => {
+const lightBoxDraw = (e) => {
     const element = e.target
-    console.log(e);
-    
-    console.log(element);
     const main = document.querySelector("main")
     const newLightBox = document.createElement("figure");
     newLightBox.classList.add("light-box")

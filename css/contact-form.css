@@ -45,7 +45,7 @@
   text-align: left;
 }
 .form-header i {
-  align-self: flex-start;
+  /*align-self: flex-start;*/
   font-size: 42px;
   color: white;
 }

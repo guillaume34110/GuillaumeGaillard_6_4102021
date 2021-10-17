@@ -85,7 +85,7 @@ const createGalery = () => {
     formEventListener()
 }
 
-export const ArticleDraw = () => {
+export const articleDraw = () => {
     
     photographerId = getId()
     createPhotograph()
@@ -111,7 +111,7 @@ export const ArticleDraw = () => {
 }
 const startDrawPhotographPage = async() => {
     fullData = await getJsonData()
-    ArticleDraw()
+    articleDraw()
 }
 
 const body = document.querySelector("body") 
