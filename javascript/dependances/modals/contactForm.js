@@ -1,15 +1,15 @@
 import { currentPhotographer } from "../../photographerPage.js";
 import { timeout } from "../timeoutFunction.js";
 
-
+let modalEventToken = false
 export const formEventListener = () => {
-    document.querySelector(".btn-contact").addEventListener("click" , contactModalDraw)
+  document.querySelector(".btn-contact").addEventListener("click", contactModalDraw)
 }
 const contactModalDraw = () => {
-    const main = document.querySelector("main")
-    const newLightBox = document.createElement("section");
-    newLightBox.classList.add("contact-form")
-    newLightBox.innerHTML =`
+  const main = document.querySelector("main")
+  const newLightBox = document.createElement("section");
+  newLightBox.classList.add("contact-form")
+  newLightBox.innerHTML = `
     <div class = "form-container" >
     <div class = "form-header">
         <h2>Contactez-moi ${currentPhotographer.name}</h2>
@@ -40,69 +40,82 @@ const contactModalDraw = () => {
     <button  arial-label= "bouton envoyer le formulaire"  class ="btn btn-article btn-send">Envoyer</button> 
     </div>
     `
-    main.appendChild(newLightBox)
-    const close = document.querySelector(".close")
-    close.addEventListener("click",modalClose)
-    close.addEventListener("keydown" ,async function (e) {
-      if (e.key === "Enter") {
-        modalClose(e) 
-          await timeout(500)
-        }   
+  main.appendChild(newLightBox)
+  const close = document.querySelector(".close")
+  close.addEventListener("click", modalClose)
+  close.addEventListener("keydown", async function (e) {
+    if (e.key === "Enter") {
+      modalClose(e)
+      await timeout(500)
+    }
   })
-    const sendButton = document.querySelector(".btn-send")
-    sendButton.addEventListener("click" ,contactModalCheck)
-      close.focus()
+    if (!modalEventToken ) {
+    modalEventToken = true
+    const body = document.querySelector("body")
+    body.addEventListener("keydown", async function (e) {
+      const contactForm = document.querySelector(".contact-form")
+      if (e.key === " " && contactForm) {// to lock spacescroll when lightbox is open
+        e.preventDefault();  //lock scroll
+        modalClose(e)
+        await timeout(500)
+      }
+    })
+  }
+  const sendButton = document.querySelector(".btn-send")
+  sendButton.addEventListener("click", contactModalCheck)
+  close.focus()
 }
+
 const modalClose = () => {
-document.querySelector(".contact-form").remove()
+  document.querySelector(".contact-form").remove()
 }
 const contactModalCheck = () => {
-    const textControl = document.querySelectorAll(".text-control")
-    const alerts = document.querySelectorAll(".alert")
-    const checkName = /^([a-zA-Z]){2,20}$/;
-    const checkMail = /^\S+@\S+\.\S+$/;//@ .
-    const checkTextarea = /^([a-zA-Z0-9 ,.?!éàèç]){12,600}$/
-    console.log(textControl);
-    let errorToken = false //no error
-    textControl.forEach (e=> {
-        console.log(checkName.test(e.value))
-          if ((e.id === "first-name"||e.id === "last-name") && !checkName.test(e.value) ) {
-            e.classList.add("text-error");
-            errorToken = true 
-            if (e.id === "first-name") {
-              alerts[0].classList.add("alert-active");
-            }
-            else if (e.id === "last-name") {
-              alerts[1].classList.add("alert-active");
-            }
-          }else if((e.id === "first-name"||e.id === "last-name") && checkName.test(e.value)){
-            e.classList.remove("text-error")
-            if (e.id === "first-name") {
-              alerts[0].classList.remove("alert-active");
-            }
-            else if (e.id === "last-name") {
-              alerts[1].classList.remove("alert-active");
-            }
-          }
-           if (e.id==="email" && !checkMail.test(e.value)) {
-            e.classList.add("text-error");
-            errorToken = true 
-            alerts[2].classList.add("alert-active");
-          }else if(e.id==="email" && checkMail.test(e.value)){
-            e.classList.remove("text-error");
-            alerts[2].classList.remove("alert-active");
-          }
-           if (e.id==="textarea" && !checkTextarea.test(e.value)) {
-            e.classList.add("text-error");
-            errorToken = true 
-            alerts[3].classList.add("alert-active");
-          }else if(e.id==="textarea" && checkTextarea.test(e.value)){
-            e.classList.remove("text-error");
-            alerts[3].classList.remove("alert-active");
-          }
-          
-        })
-        if (errorToken === false)textControl.forEach (e=> {console.log(e.id," = ",e.value);})
-        modalClose()
+  const textControl = document.querySelectorAll(".text-control")
+  const alerts = document.querySelectorAll(".alert")
+  const checkName = /^([a-zA-Z]){2,20}$/;
+  const checkMail = /^\S+@\S+\.\S+$/;//@ .
+  const checkTextarea = /^([a-zA-Z0-9 ,.?!éàèç]){12,600}$/
+  console.log(textControl);
+  let errorToken = false //no error
+  textControl.forEach(e => {
+    console.log(checkName.test(e.value))
+    if ((e.id === "first-name" || e.id === "last-name") && !checkName.test(e.value)) {
+      e.classList.add("text-error");
+      errorToken = true
+      if (e.id === "first-name") {
+        alerts[0].classList.add("alert-active");
+      }
+      else if (e.id === "last-name") {
+        alerts[1].classList.add("alert-active");
+      }
+    } else if ((e.id === "first-name" || e.id === "last-name") && checkName.test(e.value)) {
+      e.classList.remove("text-error")
+      if (e.id === "first-name") {
+        alerts[0].classList.remove("alert-active");
+      }
+      else if (e.id === "last-name") {
+        alerts[1].classList.remove("alert-active");
+      }
+    }
+    if (e.id === "email" && !checkMail.test(e.value)) {
+      e.classList.add("text-error");
+      errorToken = true
+      alerts[2].classList.add("alert-active");
+    } else if (e.id === "email" && checkMail.test(e.value)) {
+      e.classList.remove("text-error");
+      alerts[2].classList.remove("alert-active");
+    }
+    if (e.id === "textarea" && !checkTextarea.test(e.value)) {
+      e.classList.add("text-error");
+      errorToken = true
+      alerts[3].classList.add("alert-active");
+    } else if (e.id === "textarea" && checkTextarea.test(e.value)) {
+      e.classList.remove("text-error");
+      alerts[3].classList.remove("alert-active");
+    }
+
+  })
+  if (errorToken === false) textControl.forEach(e => { console.log(e.id, " = ", e.value); })
+  modalClose()
 
 }
