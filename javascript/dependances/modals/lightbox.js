@@ -68,7 +68,7 @@ const nextPicture = () => {
             }
             i = currentGalery.length
         }
-      insideEventListeners()
+        insideEventListeners()
     }
 }
 const videohtml = (e) => {
@@ -99,79 +99,79 @@ const imghtml = (e) => {
 const insideEventListeners = () => {
     /* fermeture light box*/
     const close = document.querySelector(".fa-times")
-  
-        close.addEventListener("click", closeLightBox)
-        close.addEventListener("keydown", async function (e) {
-            if (e.key === "Enter") {
+
+    close.addEventListener("click", closeLightBox)
+    close.addEventListener("keydown", async function (e) {
+        if (e.key === "Enter") {
+            closeLightBox()
+            await timeout(500)
+        }
+    })
+
+
+    /*media precedent*/
+    const arrowLeft = document.querySelector(".fa-chevron-left")
+    arrowLeft.addEventListener("click", prevPicture)
+    arrowLeft.addEventListener("keydown", async function (e) {
+        if (e.key === "Enter") {
+            prevPicture()
+            await timeout(500)
+        }
+    })
+
+
+    /*media suivant*/
+    const arrowRight = document.querySelector(".fa-chevron-right")
+
+    arrowRight.addEventListener("click", nextPicture)
+    arrowRight.addEventListener("keydown", async function (e) {
+        if (e.key === "Enter") {
+            nextPicture()
+            await timeout(500)
+        }
+    })
+
+    const body = document.querySelector("body")
+
+    if (eventToken === false) {
+        console.log("add", eventToken);
+        eventToken = true
+        body.addEventListener("keydown", async function (e) {
+
+            const light = document.querySelector(".light-box")// to lockarrow 
+            if (e.key === "ArrowRight" && light) {// to lock arrow when lightbox is open
+                e.preventDefault();  //lock arrow
+                nextPicture()
+                await timeout(500)
+            }
+            if (e.key === " " && light) {// to lock spacescroll when lightbox is open
+                e.preventDefault();  //lock scroll
                 closeLightBox()
                 await timeout(500)
             }
+            if (e.key === "ArrowLeft" && light) {// to lock arrow when lightbox is open
+                e.preventDefault();  //lock arrow
+                nextPicture()
+                await timeout(500)
+            }
         })
-    
-
-        /*media precedent*/
-        const arrowLeft = document.querySelector(".fa-chevron-left")
-            arrowLeft.addEventListener("click", prevPicture)
-            arrowLeft.addEventListener("keydown", async function (e) {
-                if (e.key === "Enter") {
-                    prevPicture()
-                    await timeout(500)
-                }
-            })
-        
-
-        /*media suivant*/
-        const arrowRight = document.querySelector(".fa-chevron-right")
-       
-            arrowRight.addEventListener("click", nextPicture)
-            arrowRight.addEventListener("keydown", async function (e) {
-                if (e.key === "Enter") {
-                    nextPicture()
-                    await timeout(500)
-                }
-            })
-        
-        const body = document.querySelector("body")
-        
-       if (eventToken === false ){
-            console.log("add",eventToken);
-            eventToken = true
-        body.addEventListener("keydown", async function (e) {
-
-                const light = document.querySelector(".light-box")// to lockarrow 
-                if (e.key === "ArrowRight" && light) {// to lock arrow when lightbox is open
-                    e.preventDefault();  //lock arrow
-                    nextPicture()
-                    await timeout(500)
-                }
-                if (e.key === " " && light) {// to lock spacescroll when lightbox is open
-                    e.preventDefault();  //lock scroll
-                    closeLightBox()
-                    await timeout(500)
-                }
-                if (e.key === "ArrowLeft" && light) {// to lock arrow when lightbox is open
-                    e.preventDefault();  //lock arrow
-                    nextPicture()
-                    await timeout(500)
-                }
-             })
-       }
+    }
 }
 
-    const lightBoxDraw = (e) => {
-        const element = e.target
-        const main = document.querySelector("main")
-        const newLightBox = document.createElement("figure");
-        newLightBox.classList.add("light-box")
-        newLightBox.id = `${element.id}`
-        let newHtml
-        if (e.target.classList[0] === "img-galery") newHtml = imghtml(element)
-        if (e.target.classList[0] === "video") {
-            element.src = e.target.children[0].src
-            newHtml = videohtml(element)
-        }
-        main.appendChild(newLightBox);
-        newLightBox.innerHTML = newHtml;
-        document.querySelector(".fa-chevron-right").focus()
-        insideEventListeners()
+const lightBoxDraw = (e) => {
+    const element = e.target
+    const main = document.querySelector("main")
+    const newLightBox = document.createElement("figure");
+    newLightBox.classList.add("light-box")
+    newLightBox.id = `${element.id}`
+    let newHtml
+    if (e.target.classList[0] === "img-galery") newHtml = imghtml(element)
+    if (e.target.classList[0] === "video") {
+        element.src = e.target.children[0].src
+        newHtml = videohtml(element)
     }
+    main.appendChild(newLightBox);
+    newLightBox.innerHTML = newHtml;
+    document.querySelector(".fa-chevron-right").focus()
+    insideEventListeners()
+}
