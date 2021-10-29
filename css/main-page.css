@@ -5,6 +5,22 @@ header {
   flex-direction: column;
   margin-bottom: 5vh;
 }
+.main-btn{
+  position: fixed;
+  text-align: center;
+  z-index: 15;
+  left: 50%;
+  margin-left: -85px;
+  margin-top: 9px;
+  min-height: 30px;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 23px;
+  width: 182px;
+  height:30px;
+  background: #DB8876;
+  border-radius: 5px;
+  }
 .return-top {
   display: none;
   align-items: center;
@@ -40,10 +56,11 @@ header {
 main {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
+  padding: 0 0vw ;
 }
 section {
-  width: 25vw;
+  width:26vw;
   min-width : 350px;
   height: 45vh;
   min-height: 350px;
@@ -70,6 +87,9 @@ section ul {
 .header-menu{
   position:relative;
 }
+.main-btn{
+display: none;
+  }
 .header-menu h1{
 font-size: 14px;
 line-height: 18px;
@@ -86,5 +106,8 @@ text-align: end;
   .logo{
     width: 150px;
     height: 38px;
+  }
+  main{
+    justify-content: space-around;
   }
 }

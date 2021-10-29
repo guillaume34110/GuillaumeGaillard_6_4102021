@@ -72,7 +72,17 @@ export const mapMainPage = async () => {
     main.appendChild(newSection);
     newSection.innerHTML = newHtml;
   })
+  fixedButtonEvent()
   tagsEventSettings() //set event listener on new elements
+
 }
 
 
+const fixedButtonEvent = () => {
+  document.addEventListener("scroll", scrollDisplay)
+}
+const scrollDisplay = () => {
+   const btn = document.querySelector(".main-btn")
+  if (window.scrollY > 0 )btn.classList.remove("hiden")
+  else btn.classList.add("hiden")
+}
