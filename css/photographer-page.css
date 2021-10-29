@@ -200,7 +200,7 @@ figure:hover > .video {
   }
 
   .article-left-container {
-    min-width: 0;
+    min-width: 0px;
   }
   .photograph-article h2,
   .photograph-article h3,
@@ -275,7 +275,13 @@ figure:hover > .video {
   .photograph-article  {
     padding-top: 0;
       margin-bottom:10px;
-    }
+      width:90vw;
+     
+    } 
+    .photograph-article h2{
+        white-space:normal;
+        max-width: 180px;
+      }
 }
 @media screen and (max-width: 350px) {
   .photograph-article {
