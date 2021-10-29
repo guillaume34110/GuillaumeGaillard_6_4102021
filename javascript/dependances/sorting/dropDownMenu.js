@@ -1,20 +1,21 @@
 
 import {currentGalery, sectionsDraw} from "../../photographerPage.js"
+import { timeout } from "../timeoutFunction.js"
 
 let sortedFullData = []
-
+let lastSorting = "Popularité"
 
 export const sortValue =(e)=>{
     console.log(e)
     let sortButtonValue
     if (e?.target.value) sortButtonValue = e.target.value;
     else  { 
-        sortButtonValue = "First" ///start protection
+        sortButtonValue = lastSorting ///start protection
      }
-    
+    console.log(sortButtonValue);
     sortedFullData = []
 
-    if (sortButtonValue === "Popularité" || sortButtonValue === "First"){ 
+    if (sortButtonValue === "Popularité" ){ 
         sortedFullData = currentGalery
         sortedFullData.sort((a,b) => a.likes > b.likes ? -1:1)
     }
@@ -30,15 +31,17 @@ export const sortValue =(e)=>{
         sortedFullData = currentGalery
         sortedFullData.sort((a,b) => a.title > b.title ? 1:-1)
     }
+    lastSorting = sortButtonValue
     displayDropDown(sortButtonValue)
 } 
 
 
 const displayDropDown = async(sortButtonValue) => {
-    if (sortButtonValue !== "First"){
+    
     const dropdown = document.querySelector(".dropdown-container")
    
     if (!dropdown.classList.contains("dropdown-deploy") ){
+        console.log("enter2");
     dropdown.classList.add("dropdown-deploy")
     dropdown.innerHTML = `
     <div class = "dropdown-list">
@@ -51,8 +54,11 @@ const displayDropDown = async(sortButtonValue) => {
     `
     const newButtons  = document.querySelectorAll(".sort-atribute")
     newButtons.forEach(e => e.addEventListener("click" , sectionsDraw ))
+    const icon = document.querySelector(".fa-angle-up")
+    icon.addEventListener("click" , sectionsDraw  )
 }
-else { console.log("enter")
+else { console.log("enter")  
+await timeout(10)
     dropdown.classList.remove("dropdown-deploy")
     dropdown.innerHTML = `
     <button aria-controls="export-dropdown" aria-expanded="false" class="dropdown btn" >
@@ -60,7 +66,8 @@ else { console.log("enter")
       <i class="fa fa-angle-down"></i>
     </button>
     `
+  
     document.querySelector(".dropdown").addEventListener("click" , displayDropDown )
-}}
+}
 }
 document.querySelector(".dropdown")?.addEventListener("click" , displayDropDown )
