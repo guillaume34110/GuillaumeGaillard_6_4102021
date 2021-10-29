@@ -56,6 +56,7 @@ main {
   margin-bottom: 0;
   display: flex;
   justify-content: flex-start;
+  min-width: 280px;
 }
 
 .btn-article {
@@ -93,6 +94,7 @@ section {
   align-items: center;
   justify-content: space-evenly;
   margin-top: 2vh;
+  width : 100%;
 }
 
 .img-galery {
@@ -245,6 +247,7 @@ figure:hover > .video {
   /* galery*/
   .img-galery {
     width: 335px;
+    max-width:90vw;
     height: 190px;
   }
   .video {
@@ -259,4 +262,24 @@ figure:hover > .video {
   .likes-widget {
     display: none;
   }
+}
+@media screen and (max-width: 500px) {
+  header{
+    margin-bottom: 0;
+  }
+ main section{
+    flex-direction: column;
+    align-content: space-around;
+    
+  }
+  .photograph-article  {
+    padding-top: 0;
+      margin-bottom:10px;
+    }
+}
+@media screen and (max-width: 350px) {
+  .photograph-article {
+    margin-bottom:30px;
+  }
+ 
 }

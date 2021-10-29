@@ -2,7 +2,8 @@
   position: fixed;
   top: 0;
   left: 0;
-  height: 100vh;
+  min-height:100vh;
+  height: 100%;
   width: 100vw;
   z-index: 20;
   background: white;
@@ -82,6 +83,7 @@
   font-size: 20px;
   transition: 0.3s;
   justify-content: flex-end;
+  text-align: start;
   width: 100%;
   margin-top: 1vh;
 }
@@ -97,6 +99,8 @@
   opacity: 0.8;
 }
 @media screen and (max-width: 600px) {
+  
+
   .form-container {
     justify-content: space-between;
     width: 96vw;
@@ -152,5 +156,11 @@
   .btn-send {
     position: initial;
     align-self: center;
+  }
+}
+@media screen and (max-width:350px){
+
+.form-container{
+    width: 305px;
   }
 }

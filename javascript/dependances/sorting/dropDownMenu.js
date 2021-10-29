@@ -9,6 +9,9 @@ export const sortValue =(e)=>{
     console.log(e)
     let sortButtonValue
     if (e?.target.value) sortButtonValue = e.target.value;
+    else if (e === undefined ){
+        sortButtonValue ="first"
+    }
     else  { 
         sortButtonValue = lastSorting ///start protection
      }
@@ -31,7 +34,7 @@ export const sortValue =(e)=>{
         sortedFullData = currentGalery
         sortedFullData.sort((a,b) => a.title > b.title ? 1:-1)
     }
-    lastSorting = sortButtonValue
+    if (sortButtonValue !== "first")lastSorting = sortButtonValue
     displayDropDown(sortButtonValue)
 } 
 
@@ -39,6 +42,8 @@ export const sortValue =(e)=>{
 const displayDropDown = async(sortButtonValue) => {
     
     const dropdown = document.querySelector(".dropdown-container")
+   if (sortButtonValue !== "first"){
+
    
     if (!dropdown.classList.contains("dropdown-deploy") ){
         console.log("enter2");
@@ -68,6 +73,6 @@ await timeout(10)
     `
   
     document.querySelector(".dropdown").addEventListener("click" , displayDropDown )
-}
+}}
 }
 document.querySelector(".dropdown")?.addEventListener("click" , displayDropDown )

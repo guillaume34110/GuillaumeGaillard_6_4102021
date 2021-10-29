@@ -87,6 +87,7 @@ section ul {
 @media screen and (max-width : 1000px){
 .header-menu{
   position:relative;
+  
 }
 .main-btn{
 display: none;
@@ -110,5 +111,11 @@ text-align: end;
   }
   main{
     justify-content: space-around;
+  }
+}
+@media screen and (max-width : 350px){
+  .header-menu{
+    margin-bottom: 5vh;
+    
   }
 }
