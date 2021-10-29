@@ -77,12 +77,17 @@ export const mapMainPage = async () => {
 
 }
 
-
+/*fixed return top btn*/
 const fixedButtonEvent = () => {
+  const btn = document.querySelector(".main-btn")
   document.addEventListener("scroll", scrollDisplay)
+  btn.addEventListener("click", returnTop)
 }
 const scrollDisplay = () => {
    const btn = document.querySelector(".main-btn")
   if (window.scrollY > 0 )btn.classList.remove("hiden")
   else btn.classList.add("hiden")
+}
+const returnTop = () => {
+  scroll(0,0)
 }

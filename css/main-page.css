@@ -20,6 +20,7 @@ header {
   height:30px;
   background: #DB8876;
   border-radius: 5px;
+  cursor: pointer;
   }
 .return-top {
   display: none;
