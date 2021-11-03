@@ -151,7 +151,7 @@ const insideEventListeners = () => {
             }
             if (e.key === "ArrowLeft" && light) {// to lock arrow when lightbox is open
                 e.preventDefault();  //lock arrow
-                nextPicture()
+                prevPicture()
                 await timeout(500)
             }
         })
