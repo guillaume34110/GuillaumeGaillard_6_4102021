@@ -61,7 +61,7 @@ const createGalery = () => {
             `
         if (e.video) newHtml = `
             
-            <video id = "${e.id}" title ="${e.title}" class ="video" width="350" height="300"   >
+            <video tabindex = "0" id = "${e.id}" title ="${e.title}" class ="video" width="350" height="300"   >
             <source src="./assets/SamplePhotos/${pathName}/${e.video}" type="video/mp4">
             Your browser does not support the video tag.
             </video>
