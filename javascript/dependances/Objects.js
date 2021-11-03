@@ -12,24 +12,24 @@ export function Photograph(name, id, city, country, tags, tagline, price, portra
     
   }
 
-export function Galery (id, photographerId, title, likes, date, price) { // fonction Objet
-  
+export class Galery  { // fonction Objet
+  constructor(id, photographerId, title, likes, date, price){
     this.id = id;
     this.photographerId = photographerId
     this.title = title;
     this.likes = likes
     this.date = date
     this.price = price
-    
+    }
   
-  this.createMedia =(data)  => {
+  createMedia (data)   {
     if (data.image) 
-    return new Image(data.id ,data.photographerId,data.title,data.image,data.likes,data.date,data.price)
+    return new Image(data)
     if (data.video) 
-    return new Video(data.id ,data.photographerId,data.title, data.video,data.likes,data.date,data.price)
+    return new Video(data)
   }
   
-    this.foundSrc = (pathName) => { // permet de cré l'url de l'objet
+    foundSrc  (pathName) { // permet de cré l'url de l'objet
       let media
       if (this.image)media =this.image
       else media = this.video
@@ -37,15 +37,15 @@ export function Galery (id, photographerId, title, likes, date, price) { // fonc
     }
   }
  class Video extends Galery{//class qui extend la fonction galery et permet de crée les videos
-  constructor(id, photographerId, title,video, likes, date, price) {
-    super(id, photographerId, title, likes, date, price)
-    this.video = video
+  constructor(data) {
+    super(data.id, data.photographerId, data.title, data.likes, data.date, data.price)
+    this.video = data.video
   }
 }
 
  class Image extends Galery{
-  constructor(id, photographerId, title,image, likes, date, price) {
-    super(id, photographerId, title, likes, date, price)
-    this.image = image
+  constructor(data) {
+    super(data.id, data.photographerId, data.title, data.likes, data.date, data.price)
+    this.image = data.image
   }
 }
