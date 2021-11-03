@@ -4,7 +4,7 @@ import { timeout } from "../timeoutFunction.js"
 
 let sortedFullData = []
 let lastSorting = "Popularité"
-
+/*tri des medias en fonction des tags selectionnés*/
 export const sortValue =(e)=>{
     console.log(e)
     let sortButtonValue
@@ -18,11 +18,11 @@ export const sortValue =(e)=>{
     console.log(sortButtonValue);
     sortedFullData = []
 
-    if (sortButtonValue === "Popularité" ){ 
+    if (sortButtonValue === "Popularité" ){ // classement par popularité
         sortedFullData = currentGalery
         sortedFullData.sort((a,b) => a.likes > b.likes ? -1:1)
     }
-    else if (sortButtonValue === "Date" ){ 
+    else if (sortButtonValue === "Date" ){ // classement par date
        sortedFullData = currentGalery
        sortedFullData = sortedFullData.sort(function (a,b){
            const dateA = new Date(a.date).getTime()
@@ -30,22 +30,21 @@ export const sortValue =(e)=>{
            return dateA < dateB ? 1 : -1; // ? -1 : 1 for ascending/increasing order
        })
     }
-    else if (sortButtonValue === "Titre" ){ 
+    else if (sortButtonValue === "Titre" ){  //classement par titre
         sortedFullData = currentGalery
         sortedFullData.sort((a,b) => a.title > b.title ? 1:-1)
     }
     if (sortButtonValue !== "first")lastSorting = sortButtonValue
-    displayDropDown(sortButtonValue)
+    displayDropDown(sortButtonValue) // deploie le dropdown menu
 } 
 
-
+/*affiche le dropdown menu*/
 const displayDropDown = async(sortButtonValue) => {
     
     const dropdown = document.querySelector(".dropdown-container")
-   if (sortButtonValue !== "first"){
+   if (sortButtonValue !== "first"){ // evite le deploiement lors de la creation de la page
 
-   
-    if (!dropdown.classList.contains("dropdown-deploy") ){
+    if (!dropdown.classList.contains("dropdown-deploy") ){ 
         console.log("enter2");
     dropdown.classList.add("dropdown-deploy")
     dropdown.innerHTML = `
@@ -63,7 +62,7 @@ const displayDropDown = async(sortButtonValue) => {
     icon.addEventListener("click" , sectionsDraw  )
 }
 else { console.log("enter")  
-await timeout(10)
+await timeout(10) // temporisation anti rebond
     dropdown.classList.remove("dropdown-deploy")
     dropdown.innerHTML = `
     <button aria-controls="export-dropdown" aria-expanded="false" class="dropdown btn" >

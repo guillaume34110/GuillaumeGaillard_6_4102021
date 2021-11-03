@@ -2,7 +2,7 @@ import { currentGalery, currentPhotographer } from "../../photographerPage.js"
 import { timeout } from "../timeoutFunction.js"
 
 let eventToken = false
-
+/*creation des event listeners des medias pour l'ouverture de la lightBox*/
 export const lightBoxEventSettings = () => {
     const imgs = document.querySelectorAll(".img-galery")
     imgs.forEach(e => {
@@ -13,6 +13,7 @@ export const lightBoxEventSettings = () => {
         events(e)
     })
 }
+/*creation des event listeners pour l'ouverture de la lightBox */
 const events = (e) => {
     e.addEventListener("click", lightBoxDraw)
     e.addEventListener("keydown", async function (e) {
@@ -22,24 +23,25 @@ const events = (e) => {
         }
     })
 }
+/*ferme la lightbox*/
 const closeLightBox = () => {
     console.log("close")
     const lightBox = document.querySelector(".light-box")
     lightBox.remove()
 
 }
-
+/*aller a l'image precedente*/
 const prevPicture = () => {
     const pathName = currentPhotographer.name.split(" ")[0];
     const currentMedia = document.querySelector(".light-box")
-    for (let i = 0; i < currentGalery.length; i++) {
-        if (currentMedia.id === currentGalery[i].id.toString()) {
-            if (currentGalery[i - 1]) {
-                currentMedia.id = currentGalery[i - 1].id.toString()
-                currentGalery[i - 1].foundSrc(pathName)
-                if (currentGalery[i - 1].image) currentMedia.innerHTML = imghtml(currentGalery[i - 1])
-                if (currentGalery[i - 1].video) currentMedia.innerHTML = videohtml(currentGalery[i - 1])
-            } else {
+    for (let i = 0; i < currentGalery.length; i++) { // pour toute la galerie
+        if (currentMedia.id === currentGalery[i].id.toString()) {  // si on est le bon objet
+            if (currentGalery[i - 1]) {//si l'objet existe
+                currentMedia.id = currentGalery[i - 1].id.toString()//alors on met le nouveau
+                currentGalery[i - 1].foundSrc(pathName)//recuperation de la source
+                if (currentGalery[i - 1].image) currentMedia.innerHTML = imghtml(currentGalery[i - 1])// affichage image
+                if (currentGalery[i - 1].video) currentMedia.innerHTML = videohtml(currentGalery[i - 1])// affichage video
+            } else {// si non on va au dernier element
                 currentMedia.id = currentGalery[currentGalery.length - 1].id.toString()
                 currentGalery[currentGalery.length - 1].foundSrc(pathName)
                 if (currentGalery[currentGalery.length - 1].image) currentMedia.innerHTML = imghtml(currentGalery[currentGalery.length - 1])
@@ -47,9 +49,10 @@ const prevPicture = () => {
             }
             i = currentGalery.length
         }
-        insideEventListeners()
+        insideEventListeners()/*creation des event listeners  */
     }
 }
+/*aller a l'image suivante*/
 const nextPicture = () => {
     const pathName = currentPhotographer.name.split(" ")[0];
     const currentMedia = document.querySelector(".light-box")
@@ -68,9 +71,10 @@ const nextPicture = () => {
             }
             i = currentGalery.length
         }
-        insideEventListeners()
+        insideEventListeners()/*creation des event listeners  */
     }
 }
+/*renvoi le html pour l'affichage d'une video*/
 const videohtml = (e) => {
     return `
 <i  arial-label= "icone fermer cickable" title= "fermer"tabindex="2" class="fas fa-times"></i>
@@ -85,6 +89,7 @@ const videohtml = (e) => {
 <h3>${e.title}</h3>
         `
 }
+/*renvoi le html pour l'affichage d'une image*/
 const imghtml = (e) => {
     return `
     <i  arial-label= "icone fermer cickable" title= "fermer"tabindex="2" class="fas fa-times"></i>
@@ -96,6 +101,7 @@ const imghtml = (e) => {
     <h3>${e.title}</h3>
         `
 }
+/*creation des event listeners a l'interrieur de la lightBox*/
 const insideEventListeners = () => {
     /* fermeture light box*/
     const close = document.querySelector(".fa-times")
@@ -157,7 +163,7 @@ const insideEventListeners = () => {
         })
     }
 }
-
+/*creation de la lightBox*/
 const lightBoxDraw = (e) => {
     const element = e.target
     const main = document.querySelector("main")
@@ -165,13 +171,13 @@ const lightBoxDraw = (e) => {
     newLightBox.classList.add("light-box")
     newLightBox.id = `${element.id}`
     let newHtml
-    if (e.target.classList[0] === "img-galery") newHtml = imghtml(element)
+    if (e.target.classList[0] === "img-galery") newHtml = imghtml(element) //verifie si l'element est une photo ou une video
     if (e.target.classList[0] === "video") {
         element.src = e.target.children[0].src
         newHtml = videohtml(element)
     }
     main.appendChild(newLightBox);
     newLightBox.innerHTML = newHtml;
-    document.querySelector(".fa-chevron-right").focus()
-    insideEventListeners()
+    document.querySelector(".fa-chevron-right").focus() //focus pour la navigation au clavier
+    insideEventListeners() /*creation des event listeners a l'interrieur de la lightBox*/
 }

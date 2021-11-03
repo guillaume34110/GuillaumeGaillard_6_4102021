@@ -4,10 +4,10 @@ import { timeout } from "../timeoutFunction.js"
 
 export let sortingArray = []
 
-
+/*creation des event listeners des tags */
 export const tagsEventSettings = () => {
     const tags = document.querySelectorAll(".tag")
-    tags.forEach(e => {
+    tags.forEach(e => {//pour chaque tag
        
         e.addEventListener("click", tagSort)
         e.addEventListener("keydown" ,async function (e) {
@@ -18,7 +18,7 @@ export const tagsEventSettings = () => {
         })
     })      
 }
-
+/*tri des tags en fonction de la selection*/
 const tagSort = (e) => {
     const newSortingValue = e.target.title
     if (sortingArray.includes(newSortingValue)) sortingArray = sortingArray.filter(v => v !== newSortingValue)
@@ -28,11 +28,11 @@ const tagSort = (e) => {
     else if (body.classList.contains("photograph-pages"))  articleDraw ()
     //tag remove activity//
     const allTags = document.querySelectorAll(".tag")
-    allTags.forEach(tag => {
+    allTags.forEach(tag => { // pour tous les tags retire l'indictaeur d'activité
         if (tag.classList.contains("tag-selected")) tag.classList.remove("tag-selected")
     })
     //tag add activity//
-    sortingArray.forEach(tags => {
+    sortingArray.forEach(tags => {// pour tous les tags ajoute l'indicateur d'activité a ceux qui son selectionnés
         const selectedTag = document.querySelectorAll(`.${tags}`)
         selectedTag.forEach(tag => {
             if (!tag.classList.contains("tag-selected")) tag.classList.add("tag-selected")

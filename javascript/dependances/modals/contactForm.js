@@ -2,9 +2,11 @@ import { currentPhotographer } from "../../photographerPage.js";
 import { timeout } from "../timeoutFunction.js";
 
 let modalEventToken = false
+/*creation des event listeners du formulaire */
 export const formEventListener = () => {
   document.querySelector(".btn-contact").addEventListener("click", contactModalDraw)
 }
+/*creation du formulaire */
 const contactModalDraw = () => {
   const main = document.querySelector("main")
   const newLightBox = document.createElement("section");
@@ -41,15 +43,15 @@ const contactModalDraw = () => {
     </div>
     `
   main.appendChild(newLightBox)
-  const close = document.querySelector(".close")
-  close.addEventListener("click", modalClose)
+  const close = document.querySelector(".close")//creation de la croix pour fermer
+  close.addEventListener("click", modalClose)//creation des event listeners de la croix
   close.addEventListener("keydown", async function (e) {
     if (e.key === "Enter") {
       modalClose(e)
       await timeout(500)
     }
   })
-    if (!modalEventToken ) {
+  if (!modalEventToken) { // event listener pour la navigation au clavier , pour evité l'ajout de plusieurs event listeners
     modalEventToken = true
     const body = document.querySelector("body")
     body.addEventListener("keydown", async function (e) {
@@ -65,21 +67,22 @@ const contactModalDraw = () => {
   sendButton.addEventListener("click", contactModalCheck)
   close.focus()
 }
-
+/*ferme la modale*/
 const modalClose = () => {
   document.querySelector(".contact-form").remove()
 }
+/*controle du formulaire*/
 const contactModalCheck = () => {
   const textControl = document.querySelectorAll(".text-control")
   const alerts = document.querySelectorAll(".alert")
-  const checkName = /^([a-zA-Z]){2,20}$/;
+  const checkName = /^([a-zA-Z]){2,20}$/;//les regex pour controller les champs
   const checkMail = /^\S+@\S+\.\S+$/;//@ .
   const checkTextarea = /^([a-zA-Z0-9 ,.?!éàèç]){12,600}$/
   console.log(textControl);
   let errorToken = false //no error
-  textControl.forEach(e => {
+  textControl.forEach(e => {// pour tous les inputs
     console.log(checkName.test(e.value))
-    if ((e.id === "first-name" || e.id === "last-name") && !checkName.test(e.value)) {
+    if ((e.id === "first-name" || e.id === "last-name") && !checkName.test(e.value)) {// controle du nom et prenom
       e.classList.add("text-error");
       errorToken = true
       if (e.id === "first-name") {
@@ -97,7 +100,7 @@ const contactModalCheck = () => {
         alerts[1].classList.remove("alert-active");
       }
     }
-    if (e.id === "email" && !checkMail.test(e.value)) {
+    if (e.id === "email" && !checkMail.test(e.value)) {// controle du mail
       e.classList.add("text-error");
       errorToken = true
       alerts[2].classList.add("alert-active");
@@ -105,7 +108,7 @@ const contactModalCheck = () => {
       e.classList.remove("text-error");
       alerts[2].classList.remove("alert-active");
     }
-    if (e.id === "textarea" && !checkTextarea.test(e.value)) {
+    if (e.id === "textarea" && !checkTextarea.test(e.value)) {// controle du champ de texte
       e.classList.add("text-error");
       errorToken = true
       alerts[3].classList.add("alert-active");
@@ -115,9 +118,9 @@ const contactModalCheck = () => {
     }
 
   })
-  if (errorToken === false) {
-    textControl.forEach(e => { console.log(e.id, " = ", e.value); })
-  modalClose()
+  if (errorToken === false) {// si tous les champs sont bons
+    textControl.forEach(e => { console.log(e.id, " = ", e.value); })// console log des champs
+    modalClose()//fermeture du formulaire
   }
 
 }
